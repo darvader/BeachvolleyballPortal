@@ -1,5 +1,11 @@
-<p>
+<h1>
   Turniere
+</h1>
+<table>
+  <tr>
+    <app-tournament-list-item *ngFor="let t of tournaments" [tournament]=t>    
+    </app-tournament-list-item>
+  </tr>
+</table>
 
-  
-</p>
+

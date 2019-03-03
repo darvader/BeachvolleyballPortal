@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Tournament } from 'src/app/shared/tournament';
 
 @Component({
   selector: 'app-tournament-list-item',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TournamentListItemComponent implements OnInit {
 
+  @Input() tournament: Tournament;
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.tournament);
   }
 
 }

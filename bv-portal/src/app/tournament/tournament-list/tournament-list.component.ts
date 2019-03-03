@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TournamentResourceService } from 'src/app/api/services';
+import { Tournament } from 'src/app/api/models';
 
 @Component({
   selector: 'app-tournament-list',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TournamentListComponent implements OnInit {
 
-  constructor() { }
+  tournaments: Tournament[];
+
+  constructor(private ts: TournamentResourceService) { }
 
   ngOnInit() {
+    this.ts.getAllTournamentsUsingGET().subscribe(t => {
+      this.tournaments = t;
+      console.log(t);
+    });
   }
 
 }
