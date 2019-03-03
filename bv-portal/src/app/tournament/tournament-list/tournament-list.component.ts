@@ -9,7 +9,19 @@ import { Tournament } from 'src/app/api/models';
 })
 export class TournamentListComponent implements OnInit {
 
-  tournaments: Tournament[];
+  tournaments: Tournament[] = [];
+  columnsToDisplay = [
+    'id',
+    'name',
+    'category',
+    'gender',
+    'date',
+    'playMode',
+    'description',
+    'entryFee',
+    'priceMoney',
+    'contact'
+  ];
 
   constructor(private ts: TournamentResourceService) { }
 

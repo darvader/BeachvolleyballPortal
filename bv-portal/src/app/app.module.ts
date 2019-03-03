@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { TournamentListComponent } from './tournament/tournament-list/tournament-list.component';
 import { TournamentListItemComponent } from './tournament/tournament-list-item/tournament-list-item.component';
 import { TournamentDetailComponent } from './tournament/tournament-detail/tournament-detail.component';
-import { ApiModule } from './api/api.module';
-import { ApiConfiguration } from './api/api-configuration';
 import { SharedModule, INIT_API_CONFIGURATION } from './shared/shared.module';
+import {MatTableModule} from '@angular/material/table';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { SharedModule, INIT_API_CONFIGURATION } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    MatTableModule
   ],
   bootstrap: [AppComponent],
   providers: [
