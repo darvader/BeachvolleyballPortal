@@ -45,7 +45,7 @@
   </div>
       
   <button class="btn btn-danger" [disabled]="tournamentForm.invalid" type="submit">Abschicken</button>
-  <button class="btn btn-danger" (click)="expression" type="cancel">Abbrechen</button>
+  <a routerLink="/tournament/all"><button class="btn btn-success pull-right" >Abbrechen</button></a>
 </form>
 
 {{ tournamentForm.value | json }}
