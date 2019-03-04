@@ -1,13 +1,13 @@
 /* tslint:disable */
 export interface Tournament {
-  category?: string;
+  category?: 'CATEGORY1' | 'CATEGORY2' | 'CATEGORY3' | 'CATEGORY4';
   contact?: string;
   date?: string;
   description?: string;
   entryFee?: number;
-  gender?: string;
+  gender?: 'MEN' | 'WOMEN' | 'MIXED';
   id?: number;
   name?: string;
-  playMode?: string;
+  playMode?: 'GROUP_SINGLEOUT' | 'DOUBLEOUT' | 'OTHER';
   priceMoney?: number;
 }

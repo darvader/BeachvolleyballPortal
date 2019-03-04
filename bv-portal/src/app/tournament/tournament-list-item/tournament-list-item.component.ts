@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Tournament } from 'src/app/shared/tournament';
+import { Tournament } from 'src/app/api/models';
 
 @Component({
   selector: 'app-tournament-list-item',

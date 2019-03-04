@@ -1,7 +1,8 @@
 <h1>
   Turniere
 </h1>
-<table mat-table [dataSource]=tournaments>
+<a [routerLink]="['/tournament/create']">Turnier anlegen</a>
+<table mat-table [dataSource]=tournaments class="mat-elevation-z8">
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
     <td mat-cell *matCellDef="let user"> {{user.name}} </td>
@@ -16,7 +17,7 @@
   </ng-container>
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> Datum </th>
-    <td mat-cell *matCellDef="let user"> {{user.date}} </td>
+    <td mat-cell *matCellDef="let user"> {{user.date | date :'short'}} </td>
   </ng-container>
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef> Beschreibung </th>
