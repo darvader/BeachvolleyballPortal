@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-tournament',
@@ -35,7 +36,8 @@ export class CreateTournamentComponent implements OnInit {
     {name: 'Sonstiges', value: 'OTHER'},
   ]
 
-  constructor(private ts: TournamentResourceService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private ts: TournamentResourceService, private route: ActivatedRoute, private router: Router,
+    private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.tournament$ = this.route.paramMap.pipe(
@@ -101,7 +103,8 @@ export class CreateTournamentComponent implements OnInit {
   }
 
   fillForm(tournament: Tournament) {
-    this.tournamentForm.setValue({...tournament, date: tournament.date})
+    console.log(this.datePipe.transform(tournament.date, 'shortDate'));
+    this.tournamentForm.setValue({...tournament, date: this.datePipe.transform(tournament.date, 'yyyy-MM-ddTHH:mm:ss.SSSZZZZZ')})
     this.tournament = tournament;
     console.log(tournament);
   }

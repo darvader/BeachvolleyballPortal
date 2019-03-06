@@ -9,7 +9,7 @@ import { TournamentDetailComponent } from './tournament/tournament-detail/tourna
 import { SharedModule, INIT_API_CONFIGURATION } from './shared/shared.module';
 import { MatTableModule} from '@angular/material/table';
 import localeDe from '@angular/common/locales/de';
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, DatePipe } from '@angular/common';
 import { CreateTournamentComponent } from './tournament/create-tournament/create-tournament.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -38,7 +38,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   bootstrap: [AppComponent],
   providers: [
     { provide: LOCALE_ID, useValue: 'de' },
-    INIT_API_CONFIGURATION
+    INIT_API_CONFIGURATION,
+    DatePipe
   ]
 })
 export class AppModule {
