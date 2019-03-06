@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TournamentResourceService } from 'src/app/api/services';
 import { Tournament } from 'src/app/api/models';
 import { loc } from 'src/app/shared/localizer';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tournament-list',
@@ -26,7 +27,7 @@ export class TournamentListComponent implements OnInit {
 
   loc = loc;
 
-  constructor(private ts: TournamentResourceService) { }
+  constructor(private ts: TournamentResourceService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.ts.getAllTournamentsUsingGET().subscribe(t => {
@@ -35,25 +36,8 @@ export class TournamentListComponent implements OnInit {
     });
   }
 
-  mapCategory(category: string): string {
-    switch (category) {
-      case 'CATEGORY1': {
-        return 'Kategorie 1';
-      }
-      case 'CATEGORY2': {
-        return 'Kategorie 2';
-      }
-      case 'CATEGORY3': {
-        return 'Kategorie 3';
-      }
-      case 'CATEGORY4': {
-        return 'Kategorie 4';
-      }
-      default: {
-        return category;
-      }
-
-    }
+  goDetails(tournament: Tournament) {
+    this.router.navigate(['../details/', tournament.id], {relativeTo: this.route});
   }
 
 }

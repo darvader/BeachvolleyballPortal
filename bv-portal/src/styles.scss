@@ -2,3 +2,17 @@
 
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+td, th {
+  border: 1px solid grey;
+}
+
+th {
+  background-color: lightsteelblue;
+}
+
+tr:hover {background-color: lightgray;}
+
+
+th.mat-header-cell {
+  font-size: 20;
+}

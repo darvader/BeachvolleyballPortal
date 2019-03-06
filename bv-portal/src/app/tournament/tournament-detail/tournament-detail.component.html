@@ -1,3 +1,37 @@
-<p>
-  tournament-detail works!
-</p>
+<h1>Turnier Details</h1>
+<ng-container *ngIf="tournament$ | async as tournament">
+  <p>
+    {{ tournament | json}}
+  </p>
+  <a [routerLink]="['/tournament/edit', tournament.id]">Turnier bearbeiten</a>
+  <table>
+    <tr>
+      <td>Name: </td><td>{{ tournament.name }}</td>
+    </tr>
+    <tr>
+      <td>Kategorie: </td><td>{{ loc[tournament.category] }}</td>
+    </tr>
+    <tr>
+      <td>Typ: </td><td>{{ loc[tournament.gender] }}</td>
+    </tr>
+    <tr>
+      <td>Datum: </td><td>{{ tournament.date | date :'shortDate'}}</td>
+    </tr>
+    <tr>
+      <td>Spielsystem: </td><td>{{ loc[tournament.playMode] }}</td>
+    </tr>
+    <tr>
+      <td>Beschreibung: </td><td>{{ tournament.description }}</td>
+    </tr>
+    <tr>
+      <td>Startgebühr: </td><td>{{ tournament.entryFee }}</td>
+    </tr>
+    <tr>
+      <td>Preisgeld: </td><td>{{ tournament.priceMoney }}</td>
+    </tr>
+    <tr>
+      <td>Kontakt: </td><td>{{ tournament.contact }}</td>
+    </tr>
+  </table>
+</ng-container>
+
