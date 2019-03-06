@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Tournament } from 'src/app/api/models';
 import { TournamentResourceService } from 'src/app/api/services';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, switchMap, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,7 +14,9 @@ import { Observable } from 'rxjs';
 export class CreateTournamentComponent implements OnInit {
 
   tournament$: Observable<Tournament>;
+  tournament: Tournament;
   tournamentForm: FormGroup;
+
   categories = [
     { name: 'Kategorie 1', value: 'CATEGORY1' },
     { name: 'Kategorie 2', value: 'CATEGORY2' },
@@ -33,15 +35,23 @@ export class CreateTournamentComponent implements OnInit {
     {name: 'Sonstiges', value: 'OTHER'},
   ]
 
-  constructor(private ts: TournamentResourceService, private route: ActivatedRoute) { }
+  constructor(private ts: TournamentResourceService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.tournament$ = this.route.paramMap.pipe(
       map(params => params.get('id')),
+      filter(id => parseInt(id, 10) > 0), 
       switchMap(id => this.ts.retrieveTournamentUsingGET(parseInt(id, 10)))
     );
 
+    this.tournament$.subscribe(t => {
+      this.tournament = t;
+      this.fillForm(this.tournament);
+    });
+
     this.tournamentForm = new FormGroup({
+      id: new FormControl('', [
+      ]),
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
@@ -73,21 +83,26 @@ export class CreateTournamentComponent implements OnInit {
     });  
   }
 
+  goToDetails = (t: Tournament) => {
+    this.router.navigate(['../../details/', t.id], {relativeTo: this.route});
+  }
+
   submitForm() {
     const newTournament: Tournament = {
-      ...this.tournamentForm.value,
+      ...this.tournamentForm.value, date: this.tournamentForm.value.date
     };
-    this.ts.createTournamentUsingPOST(newTournament).subscribe();
+
+    if (newTournament.id === null) {
+      this.ts.createTournamentUsingPOST(newTournament).subscribe(this.goToDetails);
+    } else {
+      this.ts.updateTournamentUsingPUT(newTournament).subscribe(this.goToDetails);      
+    }
     this.tournamentForm.reset();
   }
+
+  fillForm(tournament: Tournament) {
+    this.tournamentForm.setValue({...tournament, date: tournament.date})
+    this.tournament = tournament;
+    console.log(tournament);
+  }
 }
-/*'id',
-'name',
-'category',
-'gender',
-'date',
-'playMode',
-'description',
-'entryFee',
-'priceMoney',
-'contact'*/

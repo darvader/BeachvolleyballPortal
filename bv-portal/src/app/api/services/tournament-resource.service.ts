@@ -18,6 +18,7 @@ import { Tournament } from '../models/tournament';
 class TournamentResourceService extends __BaseService {
   static readonly getAllTournamentsUsingGETPath = '/tournaments';
   static readonly createTournamentUsingPOSTPath = '/tournaments';
+  static readonly updateTournamentUsingPUTPath = '/tournaments';
   static readonly retrieveTournamentUsingGETPath = '/tournaments/{id}';
   static readonly deleteTournamentUsingDELETEPath = '/tournaments/{id}';
 
@@ -65,7 +66,7 @@ class TournamentResourceService extends __BaseService {
    * @param tournament tournament
    * @return OK
    */
-  createTournamentUsingPOSTResponse(tournament: Tournament): __Observable<__StrictHttpResponse<{}>> {
+  createTournamentUsingPOSTResponse(tournament: Tournament): __Observable<__StrictHttpResponse<Tournament>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -83,7 +84,7 @@ class TournamentResourceService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<Tournament>;
       })
     );
   }
@@ -91,9 +92,45 @@ class TournamentResourceService extends __BaseService {
    * @param tournament tournament
    * @return OK
    */
-  createTournamentUsingPOST(tournament: Tournament): __Observable<{}> {
+  createTournamentUsingPOST(tournament: Tournament): __Observable<Tournament> {
     return this.createTournamentUsingPOSTResponse(tournament).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as Tournament)
+    );
+  }
+
+  /**
+   * @param tournament tournament
+   * @return OK
+   */
+  updateTournamentUsingPUTResponse(tournament: Tournament): __Observable<__StrictHttpResponse<Tournament>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = tournament;
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/tournaments`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Tournament>;
+      })
+    );
+  }
+  /**
+   * @param tournament tournament
+   * @return OK
+   */
+  updateTournamentUsingPUT(tournament: Tournament): __Observable<Tournament> {
+    return this.updateTournamentUsingPUTResponse(tournament).pipe(
+      __map(_r => _r.body as Tournament)
     );
   }
 
