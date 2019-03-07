@@ -5,14 +5,14 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 
 @Component({
-  selector: 'app-create-tournament',
-  templateUrl: './create-tournament.component.html',
-  styleUrls: ['./create-tournament.component.scss']
+  selector: 'app-edit-tournament',
+  templateUrl: './edit-tournament.component.html',
+  styleUrls: ['./edit-tournament.component.scss']
 })
-export class CreateTournamentComponent implements OnInit {
+export class EditTournamentComponent implements OnInit {
 
   tournament$: Observable<Tournament>;
   tournament: Tournament;
@@ -36,8 +36,8 @@ export class CreateTournamentComponent implements OnInit {
     {name: 'Sonstiges', value: 'OTHER'},
   ]
 
-  constructor(private ts: TournamentResourceService, private route: ActivatedRoute, private router: Router,
-    private datePipe: DatePipe) { }
+  constructor(private ts: TournamentResourceService, private route: ActivatedRoute,
+     private router: Router, private datePipe: DatePipe, private location: Location) { }
 
   ngOnInit() {
     this.tournament$ = this.route.paramMap.pipe(
@@ -107,5 +107,9 @@ export class CreateTournamentComponent implements OnInit {
     this.tournamentForm.setValue({...tournament, date: this.datePipe.transform(tournament.date, 'yyyy-MM-ddTHH:mm:ss.SSSZZZZZ')})
     this.tournament = tournament;
     console.log(tournament);
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

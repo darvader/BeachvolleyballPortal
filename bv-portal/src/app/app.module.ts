@@ -10,7 +10,7 @@ import { SharedModule, INIT_API_CONFIGURATION } from './shared/shared.module';
 import { MatTableModule} from '@angular/material/table';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData, DatePipe } from '@angular/common';
-import { CreateTournamentComponent } from './tournament/create-tournament/create-tournament.component';
+import { EditTournamentComponent } from './tournament/edit-tournament/edit-tournament.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -23,7 +23,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     TournamentListComponent,
     TournamentListItemComponent,
     TournamentDetailComponent,
-    CreateTournamentComponent
+    EditTournamentComponent
   ],
   imports: [
     BrowserModule,

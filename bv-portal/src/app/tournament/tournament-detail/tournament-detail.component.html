@@ -4,6 +4,7 @@
     {{ tournament | json}}
   </p>
   <a [routerLink]="['/tournament/edit', tournament.id]">Turnier bearbeiten</a>
+  <a [routerLink]="['/tournament/all']">Turnierliste</a>
   <table>
     <tr>
       <td>Name: </td><td>{{ tournament.name }}</td>
@@ -33,5 +34,6 @@
       <td>Kontakt: </td><td>{{ tournament.contact }}</td>
     </tr>
   </table>
+  <button (click)="deleteTournament(tournament)" class="btn btn-danger mr-2">Turnier Löschen</button>
 </ng-container>
 
