@@ -11,6 +11,8 @@ export var loc = {
     ['GROUP_SINGLEOUT']:'Gruppe/Single-Out',
     ['DOUBLEOUT']:'Doppel-KO',
     ['OTHER']:'Sonstiges',
-   
+    
+    ['MALE']:'männlich',
+    ['FEMALE']:'weiblich',
 
     };

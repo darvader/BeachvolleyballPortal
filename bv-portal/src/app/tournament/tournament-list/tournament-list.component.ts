@@ -32,7 +32,6 @@ export class TournamentListComponent implements OnInit {
   ngOnInit() {
     this.ts.getAllTournamentsUsingGET().subscribe(t => {
       this.tournaments = t;
-      console.log(t);
     });
   }
 
