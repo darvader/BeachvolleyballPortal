@@ -14,7 +14,7 @@ export class SharedModule { }
 
 export function initApiConfiguration(config: ApiConfiguration): Function {
   return () => {
-    config.rootUrl = 'http://localhost:8080';
+    config.rootUrl = 'http://afiedler.ddns.net:8080';
   };
 }
 
