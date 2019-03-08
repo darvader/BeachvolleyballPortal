@@ -3,6 +3,10 @@
 </h1>
 <a [routerLink]="['/tournament/edit/0']">Turnier anlegen</a>
 <table mat-table [dataSource]=tournaments class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+  </ng-container>
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
     <td mat-cell *matCellDef="let user"> {{user.name}} 
@@ -39,10 +43,6 @@
   <ng-container matColumnDef="priceMoney">
     <th mat-header-cell *matHeaderCellDef> Preisgeld </th>
     <td mat-cell *matCellDef="let user"> {{user.priceMoney}} </td>
-  </ng-container>
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> Id </th>
-    <td mat-cell *matCellDef="let user"> {{user.id}} </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let row; columns: columnsToDisplay" (click)="goDetails(row)"></tr>
