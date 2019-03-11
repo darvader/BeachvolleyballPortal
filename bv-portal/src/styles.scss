@@ -1,20 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 td, th {
   border: 1px solid grey;
+  text-align: center;
 }
 
 th {
   background-color: lightsteelblue;
+  text-align: center;
 }
 
-tr:hover {background-color: lightgray;}
-
+tr:hover {
+  background-color: lightgray;
+}
 
 th.mat-header-cell {
-  font-size: 20;
+  text-align: center;
 }
 
 body { 
@@ -29,4 +32,8 @@ body {
 .version-info {
   font-size: 8pt;
   float: right;
+}
+
+div {
+  white-space: pre-wrap;
 }

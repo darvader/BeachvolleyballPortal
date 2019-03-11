@@ -1,0 +1,43 @@
+
+<app-menu></app-menu>
+<h2>Spieler bearbeiten</h2>
+<form [formGroup]="playerForm" (ngSubmit)="submitForm()">
+  <table>
+    <tr class="form-group">
+      <td>
+        <label>Name:</label>
+      </td>
+      <td>
+        <input type="text" class="form-control" formControlName="name">
+      </td>
+    </tr>
+    <tr class="form-group">
+        <td>
+          <label>Vorname:</label>
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName="firstName">
+        </td>
+    </tr>
+    <tr class="form-group">
+      <td>
+        <label>Geschlecht:</label>
+      </td>
+      <td>
+        <select formControlName="gender">
+          <option *ngFor="let gender of genders" [value]="gender.value">{{gender.name}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr class="form-group">
+        <td>
+          <label>Email:</label>
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName="email">
+        </td>
+    </tr>
+  </table>
+  <button class="btn btn-danger" [disabled]="playerForm.invalid" type="submit">Abschicken</button>
+  <button (click)="goBack()" type="cancel">Abbrechen</button>
+</form>

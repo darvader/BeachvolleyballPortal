@@ -1,0 +1,24 @@
+<app-menu></app-menu>
+<h2>Spieler Details</h2>
+<ng-container *ngIf="player$ | async as player">
+    <p>
+      {{ player | json}}
+    </p>
+    <a [routerLink]="['/player/edit', player.id]">Spieler bearbeiten</a>&nbsp;
+    <a [routerLink]="['/player/all']">Spielerliste</a>
+    <table>
+      <tr>
+        <td>Name: </td><td>{{ player.name }}</td>
+      </tr>
+      <tr>
+        <td>Vorname: </td><td>{{ player.firstName }}</td>
+      </tr>
+      <tr>
+        <td>Geschlecht: </td><td>{{ loc[player.gender] }}</td>
+      </tr>
+      <tr>
+        <td>Email: </td><td>{{ player.email }}</td>
+      </tr>
+    </table>
+    <button (click)="deletePlayer(player)" class="btn btn-danger mr-2">Spieler Löschen</button>
+  </ng-container>

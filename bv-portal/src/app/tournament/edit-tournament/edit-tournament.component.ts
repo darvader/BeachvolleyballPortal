@@ -103,10 +103,8 @@ export class EditTournamentComponent implements OnInit {
   }
 
   fillForm(tournament: Tournament) {
-    console.log(this.datePipe.transform(tournament.date, 'shortDate'));
     this.tournamentForm.setValue({...tournament, date: this.datePipe.transform(tournament.date, 'yyyy-MM-ddTHH:mm:ss.SSSZZZZZ')})
     this.tournament = tournament;
-    console.log(tournament);
   }
 
   goBack() {

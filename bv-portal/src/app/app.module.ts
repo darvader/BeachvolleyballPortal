@@ -14,11 +14,12 @@ import { ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { PlayerComponent } from './player/player.component';
-import { PlayerListComponent } from './player-list/player-list.component';
+import { PlayerComponent } from './player/player/player.component';
+import { PlayerListComponent } from './player/player-list/player-list.component';
 import { MenuComponent } from './menu/menu.component';
 import {MatMenuModule} from '@angular/material/menu'; 
-import {MatButtonModule} from '@angular/material/button'; 
+import {MatButtonModule} from '@angular/material/button';
+import { PlayerEditComponent } from './player/player-edit/player-edit.component'; 
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {MatButtonModule} from '@angular/material/button';
     EditTournamentComponent,
     PlayerComponent,
     PlayerListComponent,
-    MenuComponent
+    MenuComponent,
+    PlayerEditComponent
   ],
   imports: [
     BrowserModule,

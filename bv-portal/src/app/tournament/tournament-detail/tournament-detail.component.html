@@ -1,11 +1,10 @@
 <app-menu></app-menu>
-<h1>Turnier Details</h1>
+<h2>Turnier Details</h2>
 <ng-container *ngIf="tournament$ | async as tournament">
-  <p>
-    {{ tournament | json}}
-  </p>
-  <a [routerLink]="['/tournament/edit', tournament.id]">Turnier bearbeiten</a>
-  <a [routerLink]="['/tournament/all']">Turnierliste</a>
+  <a [routerLink]="['/tournament/edit', tournament.id]">Turnier bearbeiten</a>&nbsp;
+  <a [routerLink]="['/tournament/all']">Turnierliste</a>&nbsp;
+  <a [routerLink]="['/tournament/register']">Anmeldung</a>&nbsp;
+
   <table>
     <tr>
       <td>Name: </td><td>{{ tournament.name }}</td>
@@ -23,7 +22,7 @@
       <td>Spielsystem: </td><td>{{ loc[tournament.playMode] }}</td>
     </tr>
     <tr>
-      <td>Beschreibung: </td><td>{{ tournament.description }}</td>
+      <td>Beschreibung: </td><td><div>{{ tournament.description }}</div></td>
     </tr>
     <tr>
       <td>Startgebühr: </td><td>{{ tournament.entryFee }}</td>

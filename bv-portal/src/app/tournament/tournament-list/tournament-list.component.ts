@@ -19,10 +19,10 @@ export class TournamentListComponent implements OnInit {
     'gender',
     'date',
     'playMode',
-/*    'description',
+ //   'description',
     'entryFee',
     'priceMoney',
-    'contact'*/
+    'contact'
   ];
 
   loc = loc;

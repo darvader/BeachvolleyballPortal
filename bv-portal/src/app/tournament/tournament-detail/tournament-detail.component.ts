@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { loc } from 'src/app/shared/localizer';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-tournament-detail',
@@ -28,9 +27,11 @@ export class TournamentDetailComponent implements OnInit {
   }
 
   deleteTournament(tournament: Tournament) {
-    this.ts.deleteTournamentUsingDELETE(tournament.id).subscribe(() => 
-      this.router.navigate(['tournament/all'])
-    );
+    if (confirm(`Sind Sie sich sicher, dass sie das Turnier ${tournament.name} löschen möchten?`)) {
+      this.ts.deleteTournamentUsingDELETE(tournament.id).subscribe(() =>
+        this.router.navigate(['tournament/all'])
+      );
+    }
   }
 
 }
