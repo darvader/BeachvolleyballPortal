@@ -1,4 +1,6 @@
 
+<app-menu></app-menu>
+<h2>Turnier bearbeiten</h2>
 <form [formGroup]="tournamentForm" (ngSubmit)="submitForm()">
   <table>
     <tr class="form-group">
@@ -85,5 +87,3 @@
   <button class="btn btn-danger" [disabled]="tournamentForm.invalid" type="submit">Abschicken</button>
   <button (click)="goBack()" type="cancel">Abbrechen</button>
 </form>
-
-{{ tournamentForm.value | json }}

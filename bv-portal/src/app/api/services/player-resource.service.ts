@@ -16,11 +16,11 @@ import { Player } from '../models/player';
   providedIn: 'root',
 })
 class PlayerResourceService extends __BaseService {
-  static readonly getAllPlayersUsingGETPath = '/Players';
-  static readonly createPlayerUsingPOSTPath = '/Players';
-  static readonly updatePlayerUsingPUTPath = '/Players';
-  static readonly retrievePlayerUsingGETPath = '/Players/{id}';
-  static readonly deletePlayerUsingDELETEPath = '/Players/{id}';
+  static readonly getAllPlayersUsingGETPath = '/players';
+  static readonly createPlayerUsingPOSTPath = '/players';
+  static readonly updatePlayerUsingPUTPath = '/players';
+  static readonly retrievePlayerUsingGETPath = '/players/{id}';
+  static readonly deletePlayerUsingDELETEPath = '/players/{id}';
 
   constructor(
     config: __Configuration,
@@ -38,7 +38,7 @@ class PlayerResourceService extends __BaseService {
     let __body: any = null;
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/Players`,
+      this.rootUrl + `/players`,
       __body,
       {
         headers: __headers,
@@ -73,7 +73,7 @@ class PlayerResourceService extends __BaseService {
     __body = Player;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/Players`,
+      this.rootUrl + `/players`,
       __body,
       {
         headers: __headers,
@@ -109,7 +109,7 @@ class PlayerResourceService extends __BaseService {
     __body = Player;
     let req = new HttpRequest<any>(
       'PUT',
-      this.rootUrl + `/Players`,
+      this.rootUrl + `/players`,
       __body,
       {
         headers: __headers,
@@ -145,7 +145,7 @@ class PlayerResourceService extends __BaseService {
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/Players/${id}`,
+      this.rootUrl + `/players/${id}`,
       __body,
       {
         headers: __headers,
@@ -180,7 +180,7 @@ class PlayerResourceService extends __BaseService {
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/Players/${id}`,
+      this.rootUrl + `/players/${id}`,
       __body,
       {
         headers: __headers,

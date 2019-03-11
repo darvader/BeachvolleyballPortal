@@ -16,6 +16,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PlayerComponent } from './player/player.component';
 import { PlayerListComponent } from './player-list/player-list.component';
+import { MenuComponent } from './menu/menu.component';
+import {MatMenuModule} from '@angular/material/menu'; 
+import {MatButtonModule} from '@angular/material/button'; 
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { PlayerListComponent } from './player-list/player-list.component';
     TournamentDetailComponent,
     EditTournamentComponent,
     PlayerComponent,
-    PlayerListComponent
+    PlayerListComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { PlayerListComponent } from './player-list/player-list.component';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatButtonModule,
   ],
   bootstrap: [AppComponent],
   providers: [
