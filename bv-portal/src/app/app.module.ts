@@ -1,25 +1,29 @@
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatInputModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER, Provider, LOCALE_ID } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TournamentListComponent } from './tournament/tournament-list/tournament-list.component';
-import { TournamentDetailComponent } from './tournament/tournament-detail/tournament-detail.component';
-import { SharedModule, INIT_API_CONFIGURATION } from './shared/shared.module';
-import { MatTableModule} from '@angular/material/table';
-import localeDe from '@angular/common/locales/de';
-import { registerLocaleData, DatePipe } from '@angular/common';
-import { EditTournamentComponent } from './tournament/edit-tournament/edit-tournament.component';
-import { ReactiveFormsModule} from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { PlayerComponent } from './player/player/player.component';
-import { PlayerListComponent } from './player/player-list/player-list.component';
 import { MenuComponent } from './menu/menu.component';
-import {MatMenuModule} from '@angular/material/menu'; 
-import {MatButtonModule} from '@angular/material/button';
-import { PlayerEditComponent } from './player/player-edit/player-edit.component'; 
+import { PlayerEditComponent } from './player/player-edit/player-edit.component';
+import { PlayerListComponent } from './player/player-list/player-list.component';
+import { PlayerComponent } from './player/player/player.component';
+import { INIT_API_CONFIGURATION, SharedModule } from './shared/shared.module';
+import { EditTournamentComponent } from './tournament/edit-tournament/edit-tournament.component';
+import { RegisterComponent } from './tournament/register/register.component';
+import { TournamentDetailComponent } from './tournament/tournament-detail/tournament-detail.component';
+import { TournamentListComponent } from './tournament/tournament-list/tournament-list.component';
+
 
 
 @NgModule({
@@ -31,7 +35,8 @@ import { PlayerEditComponent } from './player/player-edit/player-edit.component'
     PlayerComponent,
     PlayerListComponent,
     MenuComponent,
-    PlayerEditComponent
+    PlayerEditComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +49,9 @@ import { PlayerEditComponent } from './player/player-edit/player-edit.component'
     BrowserAnimationsModule,
     MatMenuModule,
     MatButtonModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   bootstrap: [AppComponent],
   providers: [

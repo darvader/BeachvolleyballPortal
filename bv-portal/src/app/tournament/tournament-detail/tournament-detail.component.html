@@ -3,7 +3,7 @@
 <ng-container *ngIf="tournament$ | async as tournament">
   <a [routerLink]="['/tournament/edit', tournament.id]">Turnier bearbeiten</a>&nbsp;
   <a [routerLink]="['/tournament/all']">Turnierliste</a>&nbsp;
-  <a [routerLink]="['/tournament/register']">Anmeldung</a>&nbsp;
+  <a [routerLink]="['/tournament/register', tournament.id]">Anmeldung</a>&nbsp;
 
   <table>
     <tr>
