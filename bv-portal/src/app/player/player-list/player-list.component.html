@@ -21,6 +21,11 @@
     <th mat-header-cell *matHeaderCellDef> Geschlecht </th>
     <td mat-cell *matCellDef="let user"> {{loc[user.gender]}} </td>
   </ng-container>
+  <ng-container matColumnDef="club">
+    <th mat-header-cell *matHeaderCellDef> Verein </th>
+    <td mat-cell *matCellDef="let user"> {{user.club}}
+    </td>
+  </ng-container>
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef> Email </th>
     <td mat-cell *matCellDef="let user"> {{user.email}}

@@ -1,5 +1,6 @@
 /* tslint:disable */
 export interface Player {
+  club?: string;
   email?: string;
   firstName?: string;
   gender?: 'MALE' | 'FEMALE';

@@ -64,10 +64,8 @@ export class RegisterComponent implements OnInit {
     if (value == '') {
       value = ' ';
     }
-    const filterValues = value.toLowerCase().split(' ');
-    console.log(filterValues);
+    const filterValues = [...value.toLowerCase().split(/[\s,]+/), '', ''];
     return this.players.filter(player => player.name.toLowerCase().includes(filterValues[0])
-      || player.firstName.toLowerCase().includes(filterValues[0])).filter((player => player.name.toLowerCase().includes(filterValues[1])
-        || player.firstName.toLowerCase().includes(filterValues[1])));
+      ).filter((player => player.firstName.toLowerCase().includes(filterValues[1]))).filter(player => player.club.toLowerCase().includes(filterValues[2]));
   }
 }

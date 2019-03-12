@@ -46,6 +46,9 @@ export class PlayerEditComponent implements OnInit {
       gender: new FormControl('', [
         Validators.required,
       ]),
+      club: new FormControl('', [
+        Validators.required,
+      ]),
       email: new FormControl('', [
         Validators.required,
       ]),

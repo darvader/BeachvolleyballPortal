@@ -17,6 +17,7 @@ export class PlayerListComponent implements OnInit {
     'name',
     'firstName',
     'gender',
+    'club',
     'email',
   ];
 

@@ -3,7 +3,7 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 td, th {
-  border: 1px solid grey;
+  border-bottom: 1px solid grey;
   text-align: center;
 }
 
@@ -36,4 +36,8 @@ body {
 
 div {
   white-space: pre-wrap;
+}
+
+.register-width {
+  width: 400px;
 }

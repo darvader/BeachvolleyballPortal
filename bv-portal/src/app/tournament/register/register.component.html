@@ -7,11 +7,11 @@
         <label>Spieler 1:</label>
       </td>
       <td>
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width register-width">
               <input matInput placeholder="Spieler 1" aria-label="Spieler 1" [matAutocomplete]="auto" [formControl]="player1">
               <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let player of filteredPlayers | async" [value]="player.name + ' ' +  player.firstName">
-                  <span>{{player.name}}, {{player.firstName}}</span> |
+                <mat-option *ngFor="let player of filteredPlayers | async" [value]="player.name + ', ' +  player.firstName + ', ' + player.club">
+                  <span>{{player.name}}, {{player.firstName}}, {{player.club}}</span> |
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
