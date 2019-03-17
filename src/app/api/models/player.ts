@@ -6,4 +6,6 @@ export interface Player {
   gender?: 'MALE' | 'FEMALE';
   id?: number;
   name?: string;
+  password?: string;
+  role?: string;
 }
