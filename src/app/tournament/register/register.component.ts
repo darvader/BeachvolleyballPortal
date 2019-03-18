@@ -15,10 +15,15 @@ import { Location } from '@angular/common';
 export class RegisterComponent implements OnInit {
 
   tournament$: Observable<Tournament>;
-  players: Player[] = [];
-  filteredPlayers: Observable<Player[]>;
+  players1: Player[] = [];
+  players2: Player[] = [];
+  filteredPlayers1: Observable<Player[]>;
+  filteredPlayers2: Observable<Player[]>;
   registrationForm: FormGroup;
   player1 = new FormControl('', [
+    Validators.required,
+  ])
+  player2 = new FormControl('', [
     Validators.required,
   ])
 
@@ -32,19 +37,25 @@ export class RegisterComponent implements OnInit {
       switchMap(id => this.ts.retrieveTournamentUsingGET(parseInt(id, 10)))
     );
 
-    this.ps.getAllPlayersUsingGET().subscribe(p => this.players = p);
+    this.ps.getAllPlayersUsingGET().subscribe(p => {
+      this.players1 = p;
+      this.players2 = [...this.players1];
+    });
 
     this.registrationForm = new FormGroup({
       player1: this.player1,
-      player2: new FormControl(' ', [
-        Validators.required,
-      ]),
+      player2: this.player2,
     });
 
-    this.filteredPlayers = this.player1.valueChanges
+    this.filteredPlayers1 = this.player1.valueChanges
       .pipe(
         startWith(' '),
-        map(player => player ? this.filterPlayers(player) : this.players.slice())
+        map(search => search ? this.filterPlayers(search, this.players1) : this.players1.slice())
+      );
+    this.filteredPlayers2 = this.player2.valueChanges
+      .pipe(
+        startWith(' '),
+        map(search => search ? this.filterPlayers(search, this.players2) : this.players2.slice())
       );
   }
 
@@ -60,12 +71,9 @@ export class RegisterComponent implements OnInit {
     this.location.back();
   }
 
-  private filterPlayers(value: string): Player[] {
-    if (value == '') {
-      value = ' ';
-    }
+  private filterPlayers(value: string, players: Player[]): Player[] {
     const filterValues = [...value.toLowerCase().split(/[\s,]+/), '', ''];
-    return this.players.filter(player => player.name.toLowerCase().includes(filterValues[0])
+    return players.filter(player => player.name.toLowerCase().includes(filterValues[0])
       ).filter((player => player.firstName.toLowerCase().includes(filterValues[1]))).filter(player => player.club.toLowerCase().includes(filterValues[2]));
   }
 }

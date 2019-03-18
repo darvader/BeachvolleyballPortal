@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { getCurrentUser } from '../shared/helpers';
+import { getCurrentUser, hasRole } from '../shared/helpers';
 import { AuthenticationService } from '../api/my-services/authentication.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { AuthenticationService } from '../api/my-services/authentication.service
 })
 export class MenuComponent implements OnInit {
 
+  hasRole = hasRole;
   constructor(private as: AuthenticationService) { }
 
   ngOnInit() {

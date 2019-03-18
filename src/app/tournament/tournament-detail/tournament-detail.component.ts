@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { loc } from 'src/app/shared/localizer';
+import { hasRole } from 'src/app/shared/helpers';
 
 @Component({
   selector: 'app-tournament-detail',
@@ -15,6 +16,7 @@ export class TournamentDetailComponent implements OnInit {
 
   tournament$: Observable<Tournament>;
   loc = loc;
+  hasRole = hasRole;
 
   constructor(private ts: TournamentResourceService, private route: ActivatedRoute, private router: Router) { }
 

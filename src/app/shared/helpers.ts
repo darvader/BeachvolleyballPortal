@@ -6,6 +6,7 @@ export function getCurrentUser(): Player {
 }
 
 export function hasRole(role: string): boolean {
-    if (getCurrentUser())
+    if (getCurrentUser()) {
         return getCurrentUser().role.includes(role);
+    }
 }

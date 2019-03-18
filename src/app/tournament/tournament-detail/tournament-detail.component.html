@@ -1,9 +1,9 @@
 <app-menu></app-menu>
 <h2>Turnier Details</h2>
 <ng-container *ngIf="tournament$ | async as tournament">
-  <a [routerLink]="['/tournament/edit', tournament.id]">Turnier bearbeiten</a>&nbsp;
+  <a *ngIf="hasRole('ROLE_ADMIN')" [routerLink]="['/tournament/edit', tournament.id]">Turnier bearbeiten</a>&nbsp;
   <a [routerLink]="['/tournament/all']">Turnierliste</a>&nbsp;
-  <a [routerLink]="['/tournament/register', tournament.id]">Anmeldung</a>&nbsp;
+  <a *ngIf="hasRole('ROLE_USER')" [routerLink]="['/tournament/register', tournament.id]">Anmeldung</a>&nbsp;
 
   <table>
     <tr>
@@ -34,6 +34,6 @@
       <td>Kontakt: </td><td>{{ tournament.contact }}</td>
     </tr>
   </table>
-  <button (click)="deleteTournament(tournament)" class="btn btn-danger mr-2">Turnier Löschen</button>
+  <button *ngIf="hasRole('ROLE_ADMIN')" (click)="deleteTournament(tournament)" class="btn btn-danger mr-2">Turnier Löschen</button>
 </ng-container>
 

@@ -8,10 +8,10 @@
       </td>
       <td>
           <mat-form-field class="example-full-width register-width">
-              <input matInput placeholder="Spieler 1" aria-label="Spieler 1" [matAutocomplete]="auto" [formControl]="player1">
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let player of filteredPlayers | async" [value]="player.name + ', ' +  player.firstName + ', ' + player.club">
-                  <span>{{player.name}}, {{player.firstName}}, {{player.club}}</span> |
+              <input matInput placeholder="Name, Vorname, Verein" aria-label="Spieler 1" [matAutocomplete]="auto1" [formControl]="player1">
+              <mat-autocomplete #auto1="matAutocomplete">
+                <mat-option *ngFor="let player of filteredPlayers1 | async" [value]="player.name + ', ' +  player.firstName + ', ' + player.club"asdf>
+                  {{player.name}}, {{player.firstName}}, {{player.club}}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
@@ -22,8 +22,15 @@
           <label>Spieler 2:</label>
         </td>
         <td>
-          <input type="text" class="form-control" formControlName="player2">
-        </td>
+          <mat-form-field class="example-full-width register-width">
+            <input matInput placeholder="Name, Vorname, Verein" aria-label="Spieler 2" [matAutocomplete]="auto2" [formControl]="player2">
+            <mat-autocomplete #auto2="matAutocomplete">
+              <mat-option *ngFor="let player of filteredPlayers2 | async" [value]="player.name + ', ' +  player.firstName + ', ' + player.club">
+                <span>{{player.name}}, {{player.firstName}}, {{player.club}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+      </td>
     </tr>
   </table>
   <button class="btn btn-danger" [disabled]="registrationForm.invalid" type="submit">Abschicken</button>
