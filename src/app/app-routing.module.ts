@@ -8,11 +8,13 @@ import { PlayerComponent } from './player/player/player.component';
 import { PlayerEditComponent } from './player/player-edit/player-edit.component';
 import { RegisterComponent } from './tournament/register/register.component';
 import { LoginComponent } from './login/login.component';
+import { RegistrationListComponent } from './tournament/registration-list/registration-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/tournament/all', pathMatch: 'full'},
   {path: 'tournament/all', component: TournamentListComponent},
   {path: 'tournament/register/:id', component: RegisterComponent},
+  {path: 'tournament/registrations/:id', component: RegistrationListComponent},
   {path: 'tournament/edit/:id', component: EditTournamentComponent},
   {path: 'tournament/details/:id', component: TournamentDetailComponent},
   {path: 'player/all', component: PlayerListComponent},

@@ -1,0 +1,10 @@
+<app-menu></app-menu>
+<h2>Meldeliste</h2>
+<ng-container *ngIf="tournament$ | async as tournament">
+  <table *ngFor="let registration of tournament.registrations">
+    <tr>
+      <td>{{registration.player1.name}}, {{registration.player1.firstName}}</td> | 
+      <td>{{registration.player2.name}}, {{registration.player2.firstName}}</td>
+    </tr>
+  </table>
+</ng-container>

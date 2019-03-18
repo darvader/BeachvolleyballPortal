@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { Registration } from '../models/registration';
 import { Tournament } from '../models/tournament';
 
 /**
@@ -16,6 +17,7 @@ import { Tournament } from '../models/tournament';
   providedIn: 'root',
 })
 class TournamentResourceService extends __BaseService {
+  static readonly registerTournamentUsingPOSTPath = '/register';
   static readonly getAllTournamentsUsingGETPath = '/tournaments';
   static readonly createTournamentUsingPOSTPath = '/tournaments';
   static readonly updateTournamentUsingPUTPath = '/tournaments';
@@ -27,6 +29,42 @@ class TournamentResourceService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * @param registration registration
+   * @return OK
+   */
+  registerTournamentUsingPOSTResponse(registration: Registration): __Observable<__StrictHttpResponse<Registration>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = registration;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/register`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Registration>;
+      })
+    );
+  }
+  /**
+   * @param registration registration
+   * @return OK
+   */
+  registerTournamentUsingPOST(registration: Registration): __Observable<Registration> {
+    return this.registerTournamentUsingPOSTResponse(registration).pipe(
+      __map(_r => _r.body as Registration)
+    );
   }
 
   /**

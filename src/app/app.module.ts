@@ -26,6 +26,7 @@ import { TournamentListComponent } from './tournament/tournament-list/tournament
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthInterceptor, ErrorInterceptor } from './api/helpers';
 import { LoginComponent } from './login/login.component';
+import { RegistrationListComponent } from './tournament/registration-list/registration-list.component';
 
 
 
@@ -40,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     MenuComponent,
     PlayerEditComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrationListComponent
   ],
   imports: [
     BrowserModule,
