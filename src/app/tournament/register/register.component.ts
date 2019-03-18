@@ -7,6 +7,7 @@ import { map, switchMap, startWith } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Registration } from 'src/app/api/models/registration';
+import { hasRole } from 'src/app/shared/helpers';
 
 @Component({
   selector: 'app-register',
@@ -15,9 +16,9 @@ import { Registration } from 'src/app/api/models/registration';
 })
 export class RegisterComponent implements OnInit {
 
+  hasRole = hasRole;
   tournament: Tournament;
-  players1: Player[] = [];
-  players2: Player[] = [];
+  players: Player[] = [];
   filteredPlayers1: Observable<Player[]>;
   filteredPlayers2: Observable<Player[]>;
   registrationForm: FormGroup;
@@ -27,6 +28,7 @@ export class RegisterComponent implements OnInit {
   player2 = new FormControl('', [
     Validators.required,
   ])
+  registration: Registration;
 
   constructor(private ts: TournamentResourceService, private route: ActivatedRoute,
     private router: Router, private ps: PlayerResourceService, private location: Location) {
@@ -39,8 +41,7 @@ export class RegisterComponent implements OnInit {
     ).subscribe(t => this.tournament = t);
 
     this.ps.getAllPlayersUsingGET().subscribe(p => {
-      this.players1 = p;
-      this.players2 = [...this.players1];
+      this.players = p;
     });
 
     this.registrationForm = new FormGroup({
@@ -51,31 +52,34 @@ export class RegisterComponent implements OnInit {
     this.filteredPlayers1 = this.player1.valueChanges
       .pipe(
         startWith(' '),
-        map(search => search ? this.filterPlayers(search, this.players1) : this.players1.slice())
+        map(search => search ? this.filterPlayers(search, this.players) : this.players.slice())
       );
     this.filteredPlayers2 = this.player2.valueChanges
       .pipe(
         startWith(' '),
-        map(search => search ? this.filterPlayers(search, this.players2) : this.players2.slice())
+        map(search => search ? this.filterPlayers(search, this.players) : this.players.slice())
       );
   }
 
   submitForm() {
     const player1String: string = this.registrationForm.value.player1;
     const player2String: string = this.registrationForm.value.player2;
-
+    debugger;
     const player1 = this.getPlayer(player1String);
     const player2 = this.getPlayer(player2String);
-    this.filterPlayers(player2String, this.players2);
-    var registrtation: Registration = {
+    if (player1 === null || player2 === null) {
+      return;
+    }
+    const registration: Registration = {
       player1: player1,
       player2: player2,
       tournament: this.tournament
     }
+    this.ts.registerTournamentUsingPOST(registration).subscribe(r => this.router.navigate(['../../registrations/', this.tournament.id], {relativeTo: this.route}));
   }
 
   private getPlayer(player1String: string) {
-    const players = this.filterPlayers(player1String, this.players1);
+    const players = this.filterPlayersExact(player1String, this.players);
     if (players.length === 1) {
       return players[0];
     }
@@ -89,5 +93,11 @@ export class RegisterComponent implements OnInit {
     const filterValues = [...value.toLowerCase().split(/[\s,]+/), '', ''];
     return players.filter(player => player.name.toLowerCase().includes(filterValues[0])
       ).filter((player => player.firstName.toLowerCase().includes(filterValues[1]))).filter(player => player.club.toLowerCase().includes(filterValues[2]));
+  }
+
+  private filterPlayersExact(value: string, players: Player[]): Player[] {
+    const filterValues = [...value.toLowerCase().split(/[\s,]+/), '', ''];
+    return players.filter(player => player.name === filterValues[0]
+      ).filter((player => player.firstName === filterValues[1])).filter(player => player.club === filterValues[2]);
   }
 }

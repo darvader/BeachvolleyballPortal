@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Tournament } from 'src/app/api/models';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { hasRole } from 'src/app/shared/helpers';
 
 @Component({
   selector: 'app-registration-list',
@@ -14,6 +15,7 @@ export class RegistrationListComponent implements OnInit {
 
   constructor(private ts: TournamentResourceService, private route: ActivatedRoute, private router: Router) { }
 
+  hasRole = hasRole;
   tournament$: Observable<Tournament>;
 
   ngOnInit() {
