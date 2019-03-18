@@ -3,6 +3,7 @@ import { TournamentResourceService } from 'src/app/api/services';
 import { Tournament } from 'src/app/api/models';
 import { loc } from 'src/app/shared/localizer';
 import { Router, ActivatedRoute } from '@angular/router';
+import { hasRole } from 'src/app/shared/helpers';
 
 @Component({
   selector: 'app-tournament-list',
@@ -11,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class TournamentListComponent implements OnInit {
 
+  hasRole = hasRole;
   tournaments: Tournament[] = [];
   columnsToDisplay = [
     'id',
