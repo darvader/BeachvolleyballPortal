@@ -17,7 +17,7 @@ import { Login } from '../models/login';
   providedIn: 'root',
 })
 class PlayerResourceService extends __BaseService {
-  static readonly loginUsingGETPath = '/login';
+  static readonly loginUsingPOSTPath = '/login';
   static readonly getAllPlayersUsingGETPath = '/players';
   static readonly createPlayerUsingPOSTPath = '/players';
   static readonly updatePlayerUsingPUTPath = '/players';
@@ -35,13 +35,13 @@ class PlayerResourceService extends __BaseService {
    * @param login login
    * @return OK
    */
-  loginUsingGETResponse(login: Login): __Observable<__StrictHttpResponse<Player>> {
+  loginUsingPOSTResponse(login: Login): __Observable<__StrictHttpResponse<Player>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = login;
     let req = new HttpRequest<any>(
-      'GET',
+      'POST',
       this.rootUrl + `/login`,
       __body,
       {
@@ -61,8 +61,8 @@ class PlayerResourceService extends __BaseService {
    * @param login login
    * @return OK
    */
-  loginUsingGET(login: Login): __Observable<Player> {
-    return this.loginUsingGETResponse(login).pipe(
+  loginUsingPOST(login: Login): __Observable<Player> {
+    return this.loginUsingPOSTResponse(login).pipe(
       __map(_r => _r.body as Player)
     );
   }

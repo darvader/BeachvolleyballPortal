@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { PlayerResourceService } from '../api/services';
+import { AuthenticationService } from '../api/my-services/authentication.service';
 
 // import { AuthenticationService } from '../_services';
 
@@ -11,14 +11,14 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
-    returnUrl: string = '/tournament/all';
+    returnUrl: string;
     error = '';
 
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private ps: PlayerResourceService) {}
+        private as: AuthenticationService) {}
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         });
 
         // reset login status
-        //this.authenticationService.logout();
+        this.as.logout();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.ps.loginUsingGET({email: this.f.username.value, password: this.f.password.value})
+        this.as.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {

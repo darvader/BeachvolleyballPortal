@@ -23,6 +23,9 @@ import { EditTournamentComponent } from './tournament/edit-tournament/edit-tourn
 import { RegisterComponent } from './tournament/register/register.component';
 import { TournamentDetailComponent } from './tournament/tournament-detail/tournament-detail.component';
 import { TournamentListComponent } from './tournament/tournament-list/tournament-list.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BasicAuthInterceptor, ErrorInterceptor } from './api/helpers';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -36,7 +39,8 @@ import { TournamentListComponent } from './tournament/tournament-list/tournament
     PlayerListComponent,
     MenuComponent,
     PlayerEditComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,9 @@ import { TournamentListComponent } from './tournament/tournament-list/tournament
   providers: [
     { provide: LOCALE_ID, useValue: 'de' },
     INIT_API_CONFIGURATION,
-    DatePipe
+    DatePipe,
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ]
 })
 export class AppModule {

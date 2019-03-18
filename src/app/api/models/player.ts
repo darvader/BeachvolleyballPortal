@@ -1,5 +1,6 @@
 /* tslint:disable */
 export interface Player {
+  authdata?: string;
   club?: string;
   email?: string;
   firstName?: string;
