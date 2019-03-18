@@ -11,7 +11,6 @@ export class AuthenticationService {
         var login: Login = {email: username, password: password};
         return this.ps.loginUsingPOST(login).pipe(map(player => {
             // login successful if there's a user in the response
-            debugger;
             if (player) {
                 // store user details and basic auth credentials in local storage 
                 // to keep user logged in between page refreshes

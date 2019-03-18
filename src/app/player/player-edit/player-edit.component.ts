@@ -52,6 +52,14 @@ export class PlayerEditComponent implements OnInit {
       email: new FormControl('', [
         Validators.required,
       ]),
+      password: new FormControl('', [
+        Validators.required,
+      ]),
+      role: new FormControl('', [
+        Validators.required,
+      ]),
+      authdata: new FormControl('', [
+      ]),
     });  
 
   }
