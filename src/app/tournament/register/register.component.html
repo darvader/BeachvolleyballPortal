@@ -7,33 +7,39 @@
         <label>Spieler 1:</label>
       </td>
       <td>
-          <mat-form-field class="example-full-width register-width">
-              <input matInput placeholder="Name, Vorname, Verein" aria-label="Spieler 1" [matAutocomplete]="auto1" [formControl]="player1">
-              <mat-autocomplete #auto1="matAutocomplete">
-                <mat-option *ngFor="let player of filteredPlayers1 | async" [value]="player.name + ', ' +  player.firstName + ', ' + player.club"asdf>
-                  {{player.name}}, {{player.firstName}}, {{player.club}}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
+        <mat-form-field class="example-full-width register-width">
+          <input matInput placeholder="Name, Vorname, Verein" aria-label="Spieler 1" [matAutocomplete]="auto1"
+            [formControl]="player1">
+            <mat-autocomplete #auto1="matAutocomplete">
+              <mat-option *ngFor="let player of filteredPlayers1 | async"
+              [value]="player.name + ', ' +  player.firstName + ', ' + player.club" (click)="changePlayer1(player)">
+              {{player.name}}, {{player.firstName}}, {{player.club}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <input type="hidden" class="form-control" formControlName="player1Id">
       </td>
     </tr>
     <tr class="form-group">
-        <td>
-          <label>Spieler 2:</label>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width register-width">
-            <input matInput placeholder="Name, Vorname, Verein" aria-label="Spieler 2" [matAutocomplete]="auto2" [formControl]="player2">
+      <td>
+        <label>Spieler 2:</label>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width register-width">
+          <input matInput placeholder="Name, Vorname, Verein" aria-label="Spieler 2" [matAutocomplete]="auto2"
+            [formControl]="player2">
             <mat-autocomplete #auto2="matAutocomplete">
-              <mat-option *ngFor="let player of filteredPlayers2 | async" [value]="player.name + ', ' +  player.firstName + ', ' + player.club">
-                <span>{{player.name}}, {{player.firstName}}, {{player.club}}</span>
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
+              <mat-option *ngFor="let player of filteredPlayers2 | async"
+              [value]="player.name + ', ' +  player.firstName + ', ' + player.club" (click)="changePlayer2(player)">
+              <span>{{player.name}}, {{player.firstName}}, {{player.club}}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <input type="hidden" class="form-control" formControlName="player2Id">
       </td>
     </tr>
   </table>
   <button class="btn btn-danger" [disabled]="registrationForm.invalid" type="submit">Abschicken</button>
-  <button (click)="goBack()" type="cancel">Abbrechen</button>
+  <button class="btn" type="button" (click)="goBack()">Abbrechen</button>
 </form>
 {{ registrationForm.value | json }}

@@ -15,7 +15,7 @@ import { hasRole } from 'src/app/shared/helpers';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  
   hasRole = hasRole;
   tournament: Tournament;
   players: Player[] = [];
@@ -23,13 +23,19 @@ export class RegisterComponent implements OnInit {
   filteredPlayers2: Observable<Player[]>;
   registrationForm: FormGroup;
   player1 = new FormControl('', [
-    Validators.required,
   ])
   player2 = new FormControl('', [
-    Validators.required,
   ])
   registration: Registration;
-
+  p1: Player = {};
+  p2: Player = {};
+  player1Id = new FormControl('', [
+    Validators.required,
+  ]);
+  player2Id = new FormControl('', [
+    Validators.required,
+  ]);
+  
   constructor(private ts: TournamentResourceService, private route: ActivatedRoute,
     private router: Router, private ps: PlayerResourceService, private location: Location) {
   }
@@ -46,7 +52,9 @@ export class RegisterComponent implements OnInit {
 
     this.registrationForm = new FormGroup({
       player1: this.player1,
+      player1Id: this.player1Id,
       player2: this.player2,
+      player2Id: this.player2Id,
     });
 
     this.filteredPlayers1 = this.player1.valueChanges
@@ -62,12 +70,10 @@ export class RegisterComponent implements OnInit {
   }
 
   submitForm() {
-    const player1String: string = this.registrationForm.value.player1;
-    const player2String: string = this.registrationForm.value.player2;
+    const player1 = this.getPlayer(this.registrationForm.value.player1Id);
+    const player2 = this.getPlayer(this.registrationForm.value.player2Id);
     debugger;
-    const player1 = this.getPlayer(player1String);
-    const player2 = this.getPlayer(player2String);
-    if (player1 === null || player2 === null) {
+    if (player1 === undefined || player2 === undefined) {
       return;
     }
     const registration: Registration = {
@@ -78,11 +84,8 @@ export class RegisterComponent implements OnInit {
     this.ts.registerTournamentUsingPOST(registration).subscribe(r => this.router.navigate(['../../registrations/', this.tournament.id], {relativeTo: this.route}));
   }
 
-  private getPlayer(player1String: string) {
-    const players = this.filterPlayersExact(player1String, this.players);
-    if (players.length === 1) {
-      return players[0];
-    }
+  private getPlayer(playerId: number) {
+    return this.players.filter(player => player.id === playerId)[0];
   }
 
   goBack() {
@@ -95,9 +98,11 @@ export class RegisterComponent implements OnInit {
       ).filter((player => player.firstName.toLowerCase().includes(filterValues[1]))).filter(player => player.club.toLowerCase().includes(filterValues[2]));
   }
 
-  private filterPlayersExact(value: string, players: Player[]): Player[] {
-    const filterValues = [...value.toLowerCase().split(/[\s,]+/), '', ''];
-    return players.filter(player => player.name === filterValues[0]
-      ).filter((player => player.firstName === filterValues[1])).filter(player => player.club === filterValues[2]);
+  changePlayer1(player: Player) {
+    this.player1Id.setValue(player.id);
+  }
+  
+  changePlayer2(player: Player) {
+    this.player2Id.setValue(player.id);
   }
 }
