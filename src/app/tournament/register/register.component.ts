@@ -98,12 +98,25 @@ export class RegisterComponent implements OnInit {
     const filterValues = [...value.toLowerCase().split(/[\s,]+/), '', ''];
 //    debugger;
     const registeredPlayers: number[] = this.tournament ? [...this.tournament.registrations.map(r => r.player1.id), ...this.tournament.registrations.map(r => r.player2.id)]: [];
-    console.log(registeredPlayers);
     return players
     .filter(player => !registeredPlayers.includes(player.id))
     .filter(player => player.name.toLowerCase().includes(filterValues[0]))
     .filter(player => player.firstName.toLowerCase().includes(filterValues[1]))
-    .filter(player => player.club.toLowerCase().includes(filterValues[2]));
+    .filter(player => player.club.toLowerCase().includes(filterValues[2]))
+    .filter(player => this.player1Id.value != player.id)
+    .filter(player => this.player2Id.value != player.id)
+    .filter(player => this.checkGender(player))
+    ;
+  }
+
+  checkGender(player: Player): boolean {
+    if (this.tournament.gender === 'MEN'){
+      return player.gender === 'MALE';
+    }
+    if (this.tournament.gender === 'WOMEN'){
+      return player.gender === 'FEMALE';
+    }
+    return true;
   }
 
   changePlayer1(player: Player) {
