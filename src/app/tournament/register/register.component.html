@@ -42,4 +42,4 @@
   <button class="btn btn-danger" [disabled]="registrationForm.invalid" type="submit">Abschicken</button>
   <button class="btn" type="button" (click)="goBack()">Abbrechen</button>
 </form>
-{{ registrationForm.value | json }}
+<p *ngIf="error">Fehler beim Hinzufügen zum Turnier: {{error}}</p>

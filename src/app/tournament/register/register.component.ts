@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
   player2Id = new FormControl('', [
     Validators.required,
   ]);
+  error: string;
   
   constructor(private ts: TournamentResourceService, private route: ActivatedRoute,
     private router: Router, private ps: PlayerResourceService, private location: Location) {
@@ -59,20 +60,18 @@ export class RegisterComponent implements OnInit {
 
     this.filteredPlayers1 = this.player1.valueChanges
       .pipe(
-        startWith(' '),
-        map(search => search ? this.filterPlayers(search, this.players) : this.players.slice())
+        map(search => search ? this.filterPlayers(search, this.players) : [])
       );
     this.filteredPlayers2 = this.player2.valueChanges
       .pipe(
         startWith(' '),
-        map(search => search ? this.filterPlayers(search, this.players) : this.players.slice())
+        map(search => search ? this.filterPlayers(search, this.players) : [])
       );
   }
 
   submitForm() {
     const player1 = this.getPlayer(this.registrationForm.value.player1Id);
     const player2 = this.getPlayer(this.registrationForm.value.player2Id);
-    debugger;
     if (player1 === undefined || player2 === undefined) {
       return;
     }
@@ -81,7 +80,10 @@ export class RegisterComponent implements OnInit {
       player2: player2,
       tournament: this.tournament
     }
-    this.ts.registerTournamentUsingPOST(registration).subscribe(r => this.router.navigate(['../../registrations/', this.tournament.id], {relativeTo: this.route}));
+    this.ts.registerTournamentUsingPOST(registration).subscribe(
+      r => this.router.navigate(['../../registrations/', this.tournament.id], {relativeTo: this.route}),
+      error => this.error = error
+      );
   }
 
   private getPlayer(playerId: number) {
@@ -94,8 +96,14 @@ export class RegisterComponent implements OnInit {
 
   private filterPlayers(value: string, players: Player[]): Player[] {
     const filterValues = [...value.toLowerCase().split(/[\s,]+/), '', ''];
-    return players.filter(player => player.name.toLowerCase().includes(filterValues[0])
-      ).filter((player => player.firstName.toLowerCase().includes(filterValues[1]))).filter(player => player.club.toLowerCase().includes(filterValues[2]));
+//    debugger;
+    const registeredPlayers: number[] = this.tournament ? [...this.tournament.registrations.map(r => r.player1.id), ...this.tournament.registrations.map(r => r.player2.id)]: [];
+    console.log(registeredPlayers);
+    return players
+    .filter(player => !registeredPlayers.includes(player.id))
+    .filter(player => player.name.toLowerCase().includes(filterValues[0]))
+    .filter(player => player.firstName.toLowerCase().includes(filterValues[1]))
+    .filter(player => player.club.toLowerCase().includes(filterValues[2]));
   }
 
   changePlayer1(player: Player) {
