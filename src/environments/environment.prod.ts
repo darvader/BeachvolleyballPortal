@@ -2,4 +2,4 @@ export const environment = {
   production: true
 };
 
-// export const backendURL = 'https://bvp-beachvolleyball-portal.1d35.starter-us-east-1.openshiftapps.com';
+export const backendURL = 'http://35.201.123.23';
