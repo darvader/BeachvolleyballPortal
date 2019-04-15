@@ -3,7 +3,7 @@
   Turniere
 </h1>
 <a *ngIf="hasRole('ROLE_ADMIN')" [routerLink]="['/tournament/edit/0']">Turnier anlegen</a>
-<table mat-table [dataSource]=tournaments class="mat-elevation-z8">
+<table mat-table [dataSource]=tournaments>
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> Id </th>
     <td mat-cell *matCellDef="let user"> {{user.id}} </td>

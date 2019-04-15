@@ -1,4 +1,15 @@
-.mat-cell {
-    padding: 10;
+table {
+    align-content: center;
 }
 
+.mat-cell {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.mat-header-cell {
+    font-size: 120%;
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+}

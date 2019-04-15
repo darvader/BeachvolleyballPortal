@@ -8,31 +8,31 @@
 
   <table>
     <tr>
-      <td>Name: </td><td>{{ tournament.name }}</td>
+      <th>Name</th><td>{{ tournament.name }}</td>
     </tr>
     <tr>
-      <td>Kategorie: </td><td>{{ loc[tournament.category] }}</td>
+      <th>Kategorie</th><td>{{ loc[tournament.category] }}</td>
     </tr>
     <tr>
-      <td>Typ: </td><td>{{ loc[tournament.gender] }}</td>
+      <th>Typ</th><td>{{ loc[tournament.gender] }}</td>
     </tr>
     <tr>
-      <td>Datum: </td><td>{{ tournament.date | date :'shortDate'}}</td>
+      <th>Datum</th><td>{{ tournament.date | date :'shortDate'}}</td>
     </tr>
     <tr>
-      <td>Spielsystem: </td><td>{{ loc[tournament.playMode] }}</td>
+      <th>Spielsystem</th><td>{{ loc[tournament.playMode] }}</td>
     </tr>
     <tr>
-      <td>Beschreibung: </td><td><div>{{ tournament.description }}</div></td>
+      <th>Beschreibung</th><td><div>{{ tournament.description }}</div></td>
     </tr>
     <tr>
-      <td>Startgebühr: </td><td>{{ tournament.entryFee }}</td>
+      <th>Startgebühr</th><td>{{ tournament.entryFee }}</td>
     </tr>
     <tr>
-      <td>Preisgeld: </td><td>{{ tournament.priceMoney }}</td>
+      <th>Preisgeld</th><td>{{ tournament.priceMoney }}</td>
     </tr>
     <tr>
-      <td>Kontakt: </td><td>{{ tournament.contact }}</td>
+      <th>Kontakt</th><td>{{ tournament.contact }}</td>
     </tr>
   </table>
   <button *ngIf="hasRole('ROLE_ADMIN')" (click)="deleteTournament(tournament)" class="btn btn-danger mr-2">Turnier Löschen</button>
