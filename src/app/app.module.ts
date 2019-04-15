@@ -30,47 +30,57 @@ import { RegistrationListComponent } from './tournament/registration-list/regist
 
 
 
+export const imports = [
+  BrowserModule,
+  AppRoutingModule,
+  SharedModule,
+  MatTableModule,
+  ReactiveFormsModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  BrowserAnimationsModule,
+  MatMenuModule,
+  MatButtonModule,
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatInputModule,
+];
+export const declarations = [
+  AppComponent,
+  TournamentListComponent,
+  TournamentDetailComponent,
+  EditTournamentComponent,
+  PlayerComponent,
+  PlayerListComponent,
+  MenuComponent,
+  PlayerEditComponent,
+  RegisterComponent,
+  LoginComponent,
+  RegistrationListComponent
+];
+
+export const providers = [
+  { provide: LOCALE_ID, useValue: 'de' },
+  INIT_API_CONFIGURATION,
+  DatePipe,
+  { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+];
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    TournamentListComponent,
-    TournamentDetailComponent,
-    EditTournamentComponent,
-    PlayerComponent,
-    PlayerListComponent,
-    MenuComponent,
-    PlayerEditComponent,
-    RegisterComponent,
-    LoginComponent,
-    RegistrationListComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    BrowserAnimationsModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatAutocompleteModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
+  declarations: declarations,
+  imports: imports,
   bootstrap: [AppComponent],
-  providers: [
-    { provide: LOCALE_ID, useValue: 'de' },
-    INIT_API_CONFIGURATION,
-    DatePipe,
-    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-  ]
+  providers: providers
 })
 export class AppModule {
   constructor() {
-    registerLocaleData(localeDe);
+    init();
   }
 
+  
 }
+export function init() {
+  registerLocaleData(localeDe);
+}
+

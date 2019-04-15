@@ -110,10 +110,10 @@ export class RegisterComponent implements OnInit {
   }
 
   checkGender(player: Player): boolean {
-    if (this.tournament.gender === 'MEN'){
+    if (this.tournament.type === 'MEN'){
       return player.gender === 'MALE';
     }
-    if (this.tournament.gender === 'WOMEN'){
+    if (this.tournament.type === 'WOMEN'){
       return player.gender === 'FEMALE';
     }
     return true;

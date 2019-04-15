@@ -4,17 +4,17 @@
 <form [formGroup]="tournamentForm" (ngSubmit)="submitForm()">
   <table>
     <tr class="form-group">
-      <td>
-        <label>Name:</label>
-      </td>
+      <th>
+        <label>Name</label>
+      </th>
       <td>
         <input type="text" class="form-control" formControlName="name">
       </td>
     </tr>
     <tr class="form-group">
-      <td>
-        <label>Kategorie:</label>
-      </td>
+      <th>
+        <label>Kategorie</label>
+      </th>
       <td>
         <select formControlName="category">
           <option *ngFor="let category of categories" [value]="category.value">{{category.name}}</option>
@@ -22,19 +22,19 @@
       </td>
     </tr>
     <tr class="form-group">
+      <th>
+        <label>Typ</label>
+      </th>
       <td>
-        <label>Typ:</label>
-      </td>
-      <td>
-        <select formControlName="gender">
-          <option *ngFor="let gender of genders" [value]="gender.value">{{gender.name}}</option>
+        <select formControlName="type">
+          <option *ngFor="let type of types" [value]="type.value">{{type.name}}</option>
         </select>
       </td>
     </tr>
     <tr class="form-group">
-      <td>
-        <label>Datum:</label>
-      </td>
+      <th>
+        <label>Datum</label>
+      </th>
       <td>
         <input [matDatepicker]="myDatepicker" formControlName="date" readonly>
         <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
@@ -42,9 +42,9 @@
       </td>
     </tr>
     <tr class="form-group">
-      <td>
-        <label>Spielmodus:</label>
-      </td>
+      <th>
+        <label>Spielmodus</label>
+      </th>
       <td>
         <select formControlName="playMode">
           <option *ngFor="let playmode of playmodes" [value]="playmode.value">{{playmode.name}}</option>
@@ -52,33 +52,33 @@
       </td>
     </tr>
     <tr class="form-group">
-      <td>
-        <label>Beschreibung:</label>
-      </td>
+      <th>
+        <label>Beschreibung</label>
+      </th>
       <td>
         <textarea class="form-control" formControlName="description"></textarea>
       </td>
     </tr>
     <tr class="form-group">
-      <td>
-        <label>Startgebühr:</label>
-      </td>
+      <th>
+        <label>Startgebühr</label>
+      </th>
       <td>
         <input type="number" class="form-control" formControlName="entryFee">
       </td>
     </tr>
     <tr class="form-group">
-      <td>
-        <label>Preisgeld:</label>
-      </td>
+      <th>
+        <label>Preisgeld</label>
+      </th>
       <td>
         <input type="number" class="form-control" formControlName="priceMoney">
       </td>
     </tr>
     <tr class="form-group">
-      <td>
-        <label>Kontakt:</label>
-      </td>
+      <th>
+        <label>Kontakt</label>
+      </th>
       <td>
         <input type="text" class="form-control" formControlName="contact">
       </td>
@@ -87,3 +87,5 @@
   <button class="btn btn-danger" [disabled]="tournamentForm.invalid" type="submit">Abschicken</button>
   <button (click)="goBack()" type="cancel">Abbrechen</button>
 </form>
+
+{{ tournamentForm.value}}

@@ -33,9 +33,9 @@
     <th mat-header-cell *matHeaderCellDef> Startgebühr </th>
     <td mat-cell *matCellDef="let user"> {{user.entryFee}} </td>
   </ng-container>
-  <ng-container matColumnDef="gender">
+  <ng-container matColumnDef="type">
     <th mat-header-cell *matHeaderCellDef> Typ </th>
-    <td mat-cell *matCellDef="let user"> {{loc[user.gender]}} </td>
+    <td mat-cell *matCellDef="let user"> {{loc[user.type]}} </td>
   </ng-container>
   <ng-container matColumnDef="playMode">
     <th mat-header-cell *matHeaderCellDef> Spielsystem </th>

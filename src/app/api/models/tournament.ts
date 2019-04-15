@@ -6,7 +6,6 @@ export interface Tournament {
   date?: string;
   description?: string;
   entryFee?: number;
-  gender?: 'MEN' | 'WOMEN' | 'MIXED';
   contact?: string;
   name?: string;
   playMode?: 'GROUP_SINGLEOUT' | 'DOUBLEOUT' | 'OTHER';

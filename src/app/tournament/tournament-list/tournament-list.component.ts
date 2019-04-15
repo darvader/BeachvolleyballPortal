@@ -18,7 +18,7 @@ export class TournamentListComponent implements OnInit {
     'id',
     'name',
     'category',
-    'gender',
+    'type',
     'date',
     'playMode',
  //   'description',

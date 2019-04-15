@@ -24,7 +24,7 @@ export class EditTournamentComponent implements OnInit {
     { name: 'Kategorie 3', value: 'CATEGORY3' },
     { name: 'Kategorie 4', value: 'CATEGORY4' },
   ]
-  genders = [
+  types = [
     {name: 'Frauen', value: 'WOMEN'},
     {name: 'Männer', value: 'MEN'},
     {name: 'Mixed', value: 'MIXED'},
@@ -61,7 +61,7 @@ export class EditTournamentComponent implements OnInit {
       category: new FormControl('', [
         Validators.required,
       ]),
-      gender: new FormControl('', [
+      type: new FormControl('', [
         Validators.required,
       ]),
       date: new FormControl('', [
@@ -90,6 +90,7 @@ export class EditTournamentComponent implements OnInit {
   }
 
   submitForm() {
+    debugger;
     const newTournament: Tournament = {
       ...this.tournamentForm.value, date: this.tournamentForm.value.date
     };
@@ -103,7 +104,8 @@ export class EditTournamentComponent implements OnInit {
   }
 
   fillForm(tournament: Tournament) {
-    this.tournamentForm.setValue({...tournament, date: this.datePipe.transform(tournament.date, 'yyyy-MM-ddTHH:mm:ss.SSSZZZZZ')})
+    const {registrations, ...tournamentNoRegistration} = tournament;
+    this.tournamentForm.setValue({...tournamentNoRegistration, date: this.datePipe.transform(tournament.date, 'yyyy-MM-ddTHH:mm:ss.SSSZZZZZ')})
     this.tournament = tournament;
   }
 
