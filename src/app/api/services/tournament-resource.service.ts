@@ -19,6 +19,7 @@ import { Tournament } from '../models/tournament';
 class TournamentResourceService extends __BaseService {
   static readonly getsUsingGETPath = '/';
   static readonly registerTournamentUsingPOSTPath = '/register';
+  static readonly retrieveRegistrationsUsingGETPath = '/registrations/{id}';
   static readonly getAllTournamentsUsingGETPath = '/tournaments';
   static readonly createTournamentUsingPOSTPath = '/tournaments';
   static readonly updateTournamentUsingPUTPath = '/tournaments';
@@ -99,6 +100,42 @@ class TournamentResourceService extends __BaseService {
   registerTournamentUsingPOST(registration: Registration): __Observable<Registration> {
     return this.registerTournamentUsingPOSTResponse(registration).pipe(
       __map(_r => _r.body as Registration)
+    );
+  }
+
+  /**
+   * @param id id
+   * @return OK
+   */
+  retrieveRegistrationsUsingGETResponse(id: number): __Observable<__StrictHttpResponse<Array<Registration>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/registrations/${id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<Registration>>;
+      })
+    );
+  }
+  /**
+   * @param id id
+   * @return OK
+   */
+  retrieveRegistrationsUsingGET(id: number): __Observable<Array<Registration>> {
+    return this.retrieveRegistrationsUsingGETResponse(id).pipe(
+      __map(_r => _r.body as Array<Registration>)
     );
   }
 

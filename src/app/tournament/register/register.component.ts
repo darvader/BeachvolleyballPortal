@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
     Validators.required,
   ]);
   error: string;
+  registrations: Registration[];
   
   constructor(private ts: TournamentResourceService, private route: ActivatedRoute,
     private router: Router, private ps: PlayerResourceService, private location: Location) {
@@ -46,6 +47,11 @@ export class RegisterComponent implements OnInit {
       map(params => params.get('id')),
       switchMap(id => this.ts.retrieveTournamentUsingGET(parseInt(id, 10)))
     ).subscribe(t => this.tournament = t);
+
+    this.route.paramMap.pipe(
+      map(params => params.get('id')),
+      switchMap(id => this.ts.retrieveRegistrationsUsingGET(parseInt(id, 10)))
+    ).subscribe(r => this.registrations = r);
 
     this.ps.getAllPlayersUsingGET().subscribe(p => {
       this.players = p;
@@ -97,7 +103,7 @@ export class RegisterComponent implements OnInit {
   private filterPlayers(value: string, players: Player[]): Player[] {
     const filterValues = [...value.toLowerCase().split(/[\s,]+/), '', ''];
 //    debugger;
-    const registeredPlayers: number[] = this.tournament ? [...this.tournament.registrations.map(r => r.player1.id), ...this.tournament.registrations.map(r => r.player2.id)]: [];
+    const registeredPlayers: number[] = this.tournament ? [...this.registrations.map(r => r.player1.id), ...this.registrations.map(r => r.player2.id)]: [];
     return players
     .filter(player => !registeredPlayers.includes(player.id))
     .filter(player => player.name.toLowerCase().includes(filterValues[0]))

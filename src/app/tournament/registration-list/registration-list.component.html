@@ -1,13 +1,14 @@
 <app-menu></app-menu>
 <h2>Meldeliste</h2>
 
-<ng-container *ngIf="tournament$ | async as tournament">
-  <a *ngIf="hasRole('ROLE_USER')" [routerLink]="['/tournament/register', tournament.id]">Anmeldung</a>&nbsp;
-  <a *ngIf="hasRole('ROLE_USER')" [routerLink]="['/tournament/details', tournament.id]">Details</a>&nbsp;
+<ng-container *ngIf="registrations$ | async as registrations">
+  <a *ngIf="hasRole('ROLE_USER')" [routerLink]="['/tournament/register', id]">Anmeldung</a>&nbsp;
+  <a *ngIf="hasRole('ROLE_USER')" [routerLink]="['/tournament/details', id]">Details</a>&nbsp;
 
   <table>
-    <tr *ngFor="let registration of tournament.registrations">
-      <td>{{registration.player1.name}}, {{registration.player1.firstName}}</td> | 
+    <tr><th>Spieler 1</th><th>Spieler 2</th></tr>
+    <tr *ngFor="let registration of registrations">
+      <td>{{registration.player1.name}}, {{registration.player1.firstName}}</td>
       <td>{{registration.player2.name}}, {{registration.player2.firstName}}</td>
     </tr>
   </table>

@@ -101,14 +101,14 @@ class PlayerResourceService extends __BaseService {
   }
 
   /**
-   * @param Player Player
+   * @param player player
    * @return OK
    */
-  createPlayerUsingPOSTResponse(Player: Player): __Observable<__StrictHttpResponse<Player>> {
+  createPlayerUsingPOSTResponse(player: Player): __Observable<__StrictHttpResponse<Player>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = Player;
+    __body = player;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/players`,
@@ -127,24 +127,24 @@ class PlayerResourceService extends __BaseService {
     );
   }
   /**
-   * @param Player Player
+   * @param player player
    * @return OK
    */
-  createPlayerUsingPOST(Player: Player): __Observable<Player> {
-    return this.createPlayerUsingPOSTResponse(Player).pipe(
+  createPlayerUsingPOST(player: Player): __Observable<Player> {
+    return this.createPlayerUsingPOSTResponse(player).pipe(
       __map(_r => _r.body as Player)
     );
   }
 
   /**
-   * @param Player Player
+   * @param player player
    * @return OK
    */
-  updatePlayerUsingPUTResponse(Player: Player): __Observable<__StrictHttpResponse<Player>> {
+  updatePlayerUsingPUTResponse(player: Player): __Observable<__StrictHttpResponse<Player>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = Player;
+    __body = player;
     let req = new HttpRequest<any>(
       'PUT',
       this.rootUrl + `/players`,
@@ -163,11 +163,11 @@ class PlayerResourceService extends __BaseService {
     );
   }
   /**
-   * @param Player Player
+   * @param player player
    * @return OK
    */
-  updatePlayerUsingPUT(Player: Player): __Observable<Player> {
-    return this.updatePlayerUsingPUTResponse(Player).pipe(
+  updatePlayerUsingPUT(player: Player): __Observable<Player> {
+    return this.updatePlayerUsingPUTResponse(player).pipe(
       __map(_r => _r.body as Player)
     );
   }

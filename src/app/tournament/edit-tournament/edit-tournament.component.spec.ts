@@ -30,7 +30,7 @@ fdescribe('EditTournamentComponent', () => {
 
   it('create tournament', () => {
     const tournament: Tournament = {
-      id: 100,
+      id : null,
       category: 'CATEGORY1',
       date: '12.6.2019',
       description: 'Test description',
@@ -41,7 +41,11 @@ fdescribe('EditTournamentComponent', () => {
       priceMoney: 200,
       type: 'MEN'
     };
+
+    component.ngOnInit();
     component.fillForm(tournament);
     component.submitForm();
+
+    component.ts.deleteTournamentUsingDELETE(component.tournament.id);
   });
 });

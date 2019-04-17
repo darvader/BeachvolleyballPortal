@@ -36,7 +36,7 @@ export class EditTournamentComponent implements OnInit {
     {name: 'Sonstiges', value: 'OTHER'},
   ]
 
-  constructor(private ts: TournamentResourceService, private route: ActivatedRoute,
+  constructor(public ts: TournamentResourceService, private route: ActivatedRoute,
      private router: Router, private datePipe: DatePipe, private location: Location) { }
 
   ngOnInit() {
@@ -52,7 +52,7 @@ export class EditTournamentComponent implements OnInit {
     });
 
     this.tournamentForm = new FormGroup({
-      id: new FormControl('', [
+      id: new FormControl(null, [
       ]),
       name: new FormControl('', [
         Validators.required,
@@ -86,14 +86,18 @@ export class EditTournamentComponent implements OnInit {
   }
 
   goToDetails = (t: Tournament) => {
+    this.tournament = t;
     this.router.navigate(['../../details/', t.id], {relativeTo: this.route});
   }
 
   submitForm() {
-    debugger;
     const newTournament: Tournament = {
       ...this.tournamentForm.value, date: this.tournamentForm.value.date
     };
+
+    if (newTournament.name === null || newTournament.name === "") {
+      return;
+    }
 
     if (newTournament.id === null) {
       this.ts.createTournamentUsingPOST(newTournament).subscribe(this.goToDetails);
@@ -104,8 +108,7 @@ export class EditTournamentComponent implements OnInit {
   }
 
   fillForm(tournament: Tournament) {
-    const {registrations, ...tournamentNoRegistration} = tournament;
-    this.tournamentForm.setValue({...tournamentNoRegistration, date: this.datePipe.transform(tournament.date, 'yyyy-MM-ddTHH:mm:ss.SSSZZZZZ')})
+    this.tournamentForm.setValue({...tournament, date: this.datePipe.transform(tournament.date, 'yyyy-MM-ddTHH:mm:ss.SSSZZZZZ')})
     this.tournament = tournament;
   }
 
