@@ -45,7 +45,16 @@ fdescribe('EditTournamentComponent', () => {
     component.ngOnInit();
     component.fillForm(tournament);
     component.submitForm();
+    
+    expect(component.tournament.id).toBeTruthy;
+    tournament.name = 'ChangedTournamentName';
+    component.fillForm(tournament);
+    component.submitForm();
+
+    expect(component.tournament.name).toEqual('ChangedTournamentName');
 
     component.ts.deleteTournamentUsingDELETE(component.tournament.id);
+
+
   });
 });
