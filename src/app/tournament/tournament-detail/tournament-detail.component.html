@@ -35,6 +35,6 @@
       <th>Kontakt</th><td>{{ tournament.contact }}</td>
     </tr>
   </table>
-  <button *ngIf="hasRole('ROLE_ADMIN')" (click)="deleteTournament(tournament)" class="btn btn-danger mr-2">Turnier Löschen</button>
+  <button *ngIf="hasRole('ROLE_ADMIN')" (click)="deleteTournament(tournament)" class="btn btn-danger mr-2" type="delete">Turnier Löschen</button>
 </ng-container>
 
