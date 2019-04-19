@@ -1,6 +1,10 @@
 import { browser, by, element } from 'protractor';
 
 export class TournamentListPage {
+  
+  getTds() {
+    return element.all(by.css(`td`)).map(t => t.getText());
+  }
 
   delete() {
     element(by.css('button[type="delete"]')).click();

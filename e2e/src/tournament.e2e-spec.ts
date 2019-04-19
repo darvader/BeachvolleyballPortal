@@ -25,11 +25,15 @@ describe('workspace-project App', () => {
 
     page.getFormInput('date').sendKeys('11.7.2019');
     page.setSelect('DOUBLEOUT');
-    page.getFormText('description').sendKeys('Example test tournament fancy description.');
+    const exampleDescription = 'Example test tournament fancy description.';
+    page.getFormText('description').sendKeys(exampleDescription);
     page.getFormInput('entryFee').sendKeys('25');
     page.getFormInput('priceMoney').sendKeys('300');
     page.getFormInput('contact').sendKeys('testContact');
     page.submit();
+
+    expect(page.getTds()).toEqual(['TestTournamentName123', 'Kategory 1', 'Mixed', '11.7.2019', 'Doppel-KO', exampleDescription, '25', '300', 'testContact']);
+    browser.sleep(10000)
 
     page.delete();
 
