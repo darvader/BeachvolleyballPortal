@@ -13,11 +13,9 @@ describe('workspace-project App', () => {
     expect(page.getTitleText()).toEqual('Willkommen zum Beachvolleyball Portal!');
   });
   
-  it('should add a todo', function() {
+  fit('create, update, delete tournament', function() {
     page.navigateTo();
-    page.getMenu().click();
-    browser.pause();
-
+    page.login();
   });
 
   afterEach(async () => {

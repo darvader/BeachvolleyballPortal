@@ -4,6 +4,6 @@
   <button mat-menu-item routerLink="/tournament/all">Turniere</button>
   <button *ngIf="hasRole('ROLE_ADMIN')" mat-menu-item routerLink="/player/all">Spieler</button>
   <button mat-menu-item>Rangliste</button>
-  <button *ngIf="!isLoggedIn()" mat-menu-item routerLink="/login">Anmelden</button>
-  <button *ngIf="isLoggedIn()" (click) = "logout()" mat-menu-item>Abmelden</button>
+  <button *ngIf="!isLoggedIn()" mat-menu-item routerLink="/login" id="login">Anmelden</button>
+  <button *ngIf="isLoggedIn()" (click) = "logout()" mat-menu-item id="logout">Abmelden</button>
 </mat-menu>

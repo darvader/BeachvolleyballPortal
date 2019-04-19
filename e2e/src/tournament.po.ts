@@ -12,4 +12,18 @@ export class TournamentListPage {
   getMenu() {
     return element(by.css('app-root app-tournament-list app-menu'));
   }
+
+  login() {
+    
+    browser.get(browser.baseUrl + '/login') as Promise<any>;
+
+    element(by.css('input[formcontrolname="username"]')).sendKeys('afiedler@test.de');
+    element(by.css('input[formcontrolname="password"]')).sendKeys('password');
+    
+    element(by.css('button[class="btn btn-primary"]')).click();
+  }
+
+  getLogin() {
+    return element(by.id('login'));
+  }
 }
