@@ -1,16 +1,23 @@
-import { AppPage } from './app.po';
+import { TournamentListPage } from './tournament.po';
 import { browser, logging } from 'protractor';
 
 describe('workspace-project App', () => {
-  let page: AppPage;
+  let page: TournamentListPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new TournamentListPage();
   });
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to bv-portal!');
+    expect(page.getTitleText()).toEqual('Willkommen zum Beachvolleyball Portal!');
+  });
+  
+  it('should add a todo', function() {
+    page.navigateTo();
+    page.getMenu().click();
+    browser.pause();
+
   });
 
   afterEach(async () => {
