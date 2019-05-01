@@ -2,6 +2,14 @@ import { browser, by, element } from 'protractor';
 
 export class TournamentListPage {
   
+  setDate(month: string, day: string, year: string) {
+    element(by.css('button[aria-label="Open calendar"]')).click();
+    element(by.css('button[aria-label="Choose month and year"]')).click();
+    element(by.cssContainingText('.mat-calendar-body-cell-content', year)).click();
+    element(by.cssContainingText('.mat-calendar-body-cell-content', month)).click();
+    element(by.cssContainingText('.mat-calendar-body-cell-content', day)).click();
+  }
+  
   getTds() {
     return element.all(by.css(`td`)).map(t => t.getText());
   }

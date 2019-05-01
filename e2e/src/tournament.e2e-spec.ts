@@ -23,7 +23,7 @@ describe('workspace-project App', () => {
     page.setSelect('CATEGORY1');
     page.setSelect('MIXED');
 
-    page.getFormInput('date').sendKeys('11.7.2019');
+    page.setDate('NOV', '7', '2019');
     page.setSelect('DOUBLEOUT');
     const exampleDescription = 'Example test tournament fancy description.';
     page.getFormText('description').sendKeys(exampleDescription);
@@ -32,12 +32,10 @@ describe('workspace-project App', () => {
     page.getFormInput('contact').sendKeys('testContact');
     page.submit();
 
-    expect(page.getTds()).toEqual(['TestTournamentName123', 'Kategory 1', 'Mixed', '11.7.2019', 'Doppel-KO', exampleDescription, '25', '300', 'testContact']);
-    browser.sleep(10000)
+    expect(page.getTds()).toEqual(['TestTournamentName123', 'Kategory 1', 'Mixed', '07.11.2019', 'Doppel-KO', exampleDescription, '25', '300', 'testContact']);
+    browser.sleep(10000);
 
     page.delete();
-
-    browser.sleep(10000);
   });
 
   afterEach(async () => {
