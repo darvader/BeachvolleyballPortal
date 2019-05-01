@@ -86,7 +86,7 @@ export class RegisterComponent implements OnInit {
       player2: player2,
       tournament: this.tournament
     }
-    this.ts.registerTournamentUsingPOST(registration).subscribe(
+    this.ts.registerUsingPOST(registration).subscribe(
       r => this.router.navigate(['../../registrations/', this.tournament.id], {relativeTo: this.route}),
       error => this.error = error
       );

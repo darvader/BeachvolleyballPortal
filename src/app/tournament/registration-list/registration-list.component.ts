@@ -30,4 +30,12 @@ export class RegistrationListComponent implements OnInit {
     ).subscribe(id => this.id = id);
   }
 
+  unregister(registration: Registration) {
+    if (confirm(`Sind Sie sich sicher, dass sie das Team ${registration.player1.name}/${registration.player2.name} vom Turnier entfernen möchten?`)) {
+      this.ts.unregisterUsingPOST(registration).subscribe(() =>
+        this.ngOnInit()
+      );
+    }
+  }
+
 }

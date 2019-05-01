@@ -27,24 +27,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthInterceptor, ErrorInterceptor } from './api/helpers';
 import { LoginComponent } from './login/login.component';
 import { RegistrationListComponent } from './tournament/registration-list/registration-list.component';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { disableAnimation } from 'src/environments/environment';
 
-
-
-export const imports = [
-  BrowserModule,
-  AppRoutingModule,
-  SharedModule,
-  MatTableModule,
-  ReactiveFormsModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  BrowserAnimationsModule,
-  MatMenuModule,
-  MatButtonModule,
-  MatAutocompleteModule,
-  MatFormFieldModule,
-  MatInputModule,
-];
 export const declarations = [
   AppComponent,
   TournamentListComponent,
@@ -70,7 +55,21 @@ export const providers = [
 
 @NgModule({
   declarations: declarations,
-  imports: imports,
+  imports: [
+    BrowserModule,
+  AppRoutingModule,
+  SharedModule,
+  MatTableModule,
+  ReactiveFormsModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  AnimationModule(),
+  MatMenuModule,
+  MatButtonModule,
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatInputModule
+  ],
   bootstrap: [AppComponent],
   providers: providers
 })
@@ -78,10 +77,13 @@ export class AppModule {
   constructor() {
     init();
   }
-
   
 }
 export function init() {
   registerLocaleData(localeDe);
+}
+
+export function AnimationModule(): any {
+  return disableAnimation ? NoopAnimationsModule : BrowserAnimationsModule;
 }
 

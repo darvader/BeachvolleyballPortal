@@ -10,6 +10,9 @@
     <tr *ngFor="let registration of registrations">
       <td>{{registration.player1.name}}, {{registration.player1.firstName}}</td>
       <td>{{registration.player2.name}}, {{registration.player2.firstName}}</td>
+      <td *ngIf="hasRole('ROLE_TOURNAMENT')">
+        <button (click)="unregister(registration)" class="btn btn-danger mr-2" type="delete">Löschen</button>
+      </td>
     </tr>
   </table>
 </ng-container>

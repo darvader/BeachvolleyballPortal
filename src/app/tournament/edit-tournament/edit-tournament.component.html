@@ -36,7 +36,7 @@
         <label>Datum</label>
       </th>
       <td>
-        <input [matDatepicker]="myDatepicker" formControlName="date">
+        <input [matDatepicker]="myDatepicker" formControlName="date" readonly="true">
         <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
         <mat-datepicker #myDatepicker></mat-datepicker>
       </td>
