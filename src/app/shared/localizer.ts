@@ -1,8 +1,8 @@
 export var loc = { 
     ['CATEGORY1']:'Kategory 1',
     ['CATEGORY2']:'Kategory 2',
-    ['CATEGORY3']:'Kategory 2',
-    ['CATEGORY4']:'Kategory 2',
+    ['CATEGORY3']:'Kategory 3',
+    ['CATEGORY4']:'Kategory 4',
     
     ['MEN']:'Männer',
     ['WOMEN']:'Frauen',

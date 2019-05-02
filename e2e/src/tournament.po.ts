@@ -2,6 +2,10 @@ import { browser, by, element } from 'protractor';
 
 export class TournamentListPage {
   
+  edit() {
+    element(by.partialLinkText('Turnier bearbeiten')).click();
+  }
+  
   setDate(month: string, day: string, year: string) {
     element(by.css('button[aria-label="Open calendar"]')).click();
     element(by.css('button[aria-label="Choose month and year"]')).click();
