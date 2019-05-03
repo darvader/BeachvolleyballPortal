@@ -1,6 +1,9 @@
 import { browser, by, element } from 'protractor';
 
 export class TournamentListPage {
+  selectTournamentByName(name: string) {
+    return element(by.cssContainingText('.mat-cell', name));
+  }
   
   edit() {
     element(by.partialLinkText('Turnier bearbeiten')).click();

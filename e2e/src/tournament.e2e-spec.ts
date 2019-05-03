@@ -61,7 +61,15 @@ describe('workspace-project App', () => {
     'Gruppe/Single-Out', exampleDescription + ' changed', '30', '350', 'testChangedContact']);
     
     page.delete();
-    browser.sleep(1000);
+    // browser.sleep(1000);
+  });
+  
+  fit('tournament registration', function() {
+    page.login();
+    page.selectTournamentByName('TestName').click();
+    
+
+    browser.sleep(10000);
   });
 
   afterEach(async () => {
