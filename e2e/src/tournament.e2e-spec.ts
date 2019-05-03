@@ -1,12 +1,12 @@
-import { TournamentListPage } from './tournament.po';
+import { MainPage } from './main.po';
 import { browser, logging, by } from 'protractor';
 import { element } from '@angular/core/src/render3';
 
 describe('workspace-project App', () => {
-  let page: TournamentListPage;
+  let page: MainPage;
 
   beforeEach(() => {
-    page = new TournamentListPage();
+    page = new MainPage();
   });
 
   it('should display welcome message', () => {
@@ -64,7 +64,7 @@ describe('workspace-project App', () => {
     // browser.sleep(1000);
   });
   
-  fit('tournament registration', function() {
+  it('tournament registration', function() {
     page.login();
     page.selectTournamentByName('TestName').click();
     

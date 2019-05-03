@@ -1,6 +1,12 @@
 import { browser, by, element } from 'protractor';
 
-export class TournamentListPage {
+export class MainPage {
+  
+  gotToPlayers() {
+    this.getMenu().click();
+    element(by.css('button[routerlink="/player/all"]')).click();
+  }
+  
   selectTournamentByName(name: string) {
     return element(by.cssContainingText('.mat-cell', name));
   }
